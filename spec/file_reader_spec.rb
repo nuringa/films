@@ -1,17 +1,11 @@
 require 'rspec'
+require_relative '../lib/file_reader'
 
-describe 'MyBehavior' do
-  before do
-    # Do nothing
-  end
+describe FileReader do
+  file_path = (__dir__) + '/fixtures/test.txt'
+  file_reader = FileReader.new
 
-  after do
-    # Do nothing
-  end
-
-  context 'when condition' do
-    it 'succeeds' do
-      pending 'Not implemented'
-    end
+  it 'reads from file' do
+    expect(file_reader.read_from_file(file_path)).to eq(['King Kong', 'Peter Jackson', '2005'])
   end
 end
