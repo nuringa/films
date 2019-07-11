@@ -2,13 +2,12 @@ require_relative 'lib/film'
 require_relative 'lib/file_reader'
 
 file_names = Dir.children("data")
-current_path = File.dirname(__FILE__)
-abort 'Не загружены файлы c фильмами' if Dir::empty?(current_path + '/data/')
+raise 'Не загружены файлы c фильмами' if Dir::empty?((__dir__) + '/data/')
 
 films = []
 
 file_names.each do |file|
-  file_content = FileReader.new.read_from_file(current_path + '/data/' + file)
+  file_content = Film.read_from_file((__dir__) + '/data/' + file)
   films << Film.new(file_content[0], file_content[1], file_content[2])
 end
 
