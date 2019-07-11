@@ -1,8 +1,7 @@
 require_relative 'lib/film'
-require_relative 'lib/file_reader'
 
 file_names = Dir.children("data")
-raise 'Не загружены файлы c фильмами' if Dir::empty?((__dir__) + '/data/')
+raise 'Не загружены файлы c фильмами' if Dir::empty?(__dir__ + '/data/')
 
 films = []
 
