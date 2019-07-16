@@ -9,13 +9,24 @@ class FilmCollection
     new(films)
   end
 
+  def self.from_list(path)
+    html = open(path)
+    doc = Nokogiri::HTML(html)
+
+    nodes = doc.css('td.news').each { |node| node.css('a.all').text }
+
+    films = nodes.map { |element| Film.from_node(element) }
+
+    new(films.take(20))
+  end
+
   def initialize(films)
     @films = films
     @directors = directors_uniq
   end
 
   def directors_uniq
-    @directors = @films.map { |film| film.director}.uniq!
+    @directors = @films.map { |film| film.director}.uniq
   end
 
   def selected_films(user_choice)
