@@ -1,8 +1,9 @@
 class Film
   attr_reader :title, :director, :year
 
-  def self.read_from_file(file_name)
-    File.readlines(file_name, chomp: true)
+  def self.from_file(file_name)
+    file_content = File.readlines(file_name, chomp: true)
+    new(file_content[0], file_content[1], file_content[2])
   end
 
   def initialize(title, director, year)
