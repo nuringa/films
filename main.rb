@@ -13,7 +13,7 @@ user_choice = STDIN.gets.to_i
 if user_choice == 1
   film_collection = FilmCollection.from_dir("#{__dir__}/data")
 else
-  film_collection = FilmCollection.from_list("https://www.kinopoisk.ru/top/lists/#{rand(350)}/")
+  film_collection = FilmCollection.from_list("https://www.kinopoisk.ru/top/lists/#{rand(1..350)}/")
   puts 'Выбираем из коллекции www.kinopoisk.ru:'
   puts film_collection.collection_title
 end
