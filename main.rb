@@ -1,5 +1,3 @@
-require 'open-uri'
-require 'nokogiri'
 require_relative 'lib/film'
 require_relative 'lib/film_collection'
 

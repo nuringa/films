@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 class FilmCollection
   attr_reader :films, :directors, :collection_title
 
