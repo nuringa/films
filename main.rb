@@ -14,7 +14,8 @@ if user_choice == 1
   film_collection = FilmCollection.from_dir("#{__dir__}/data")
 else
   film_collection = FilmCollection.from_list('https://www.kinopoisk.ru/top/lists/294/')
-  puts ''
+  puts 'Выбираем из коллекции www.kinopoisk.ru:'
+  puts film_collection.collection_title
 end
 
 film_collection.directors.each.with_index(1) do |director, index|

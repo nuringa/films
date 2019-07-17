@@ -1,5 +1,5 @@
 class FilmCollection
-  attr_reader :films, :directors
+  attr_reader :films, :directors, :collection_title
 
   def self.from_dir(path)
     files = Dir.children(path)
@@ -13,14 +13,14 @@ class FilmCollection
     html = open(path)
     doc = Nokogiri::HTML(html)
 
-    nodes = doc.css('td.news').each { |node| node.css('a.all').text }
+    films = doc.css('td.news').map { |element| Film.from_node(element) }
+    collection_title = doc.css('div.myListFolders h1').text
 
-    films = nodes.map { |element| Film.from_node(element) }
-
-    new(films.take(20))
+    new(collection_title, films.take(20))
   end
 
-  def initialize(films)
+  def initialize(collection_title, films)
+    @collection_title = collection_title
     @films = films
     @directors = directors_uniq
   end
